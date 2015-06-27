@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', function()
-{});
+Route::get('/', function(){});
+
+/* map */
+Route::get('map', 'MapController@map');
 
 /* login & logout */
 Route::post('register', 'LoginController@register');

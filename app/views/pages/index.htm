@@ -1,0 +1,44 @@
+<!DOCCTYPE html>
+<html lang="en">
+ <head>
+  <title></title>
+  <style>
+  #map {
+   width: 960px;
+   height: 500px;
+  }
+  </style>
+ </head>
+ <body>
+  <svg id="map"></svg>
+ </body>
+ <script src="http://d3js.org/d3.v3.min.js"></script>
+ <script src="http://d3js.org/topojson.v1.min.js"></script>
+ <script>
+ 
+ d3.json("./json/twCounty2010merge.topo.json", function (error, data) {
+
+    topo = topojson.feature(data, data.objects.layer1);
+  prj = d3.geo.mercator().center([120.979531, 23.978567]).scale(5000);
+
+  path = d3.geo.path().projection(prj);
+	var popData=JSON.parse('[{"COUNTYNAME":"南投縣","population":6},{"COUNTYNAME":"台中市","population":30},{"COUNTYNAME":"台北市","population":49},{"COUNTYNAME":"台南市","population":17},{"COUNTYNAME":"台東縣","population":2},{"COUNTYNAME":"嘉義市","population":6},{"COUNTYNAME":"嘉義縣","population":2},{"COUNTYNAME":"基隆市","population":1},{"COUNTYNAME":"宜蘭縣","population":3},{"COUNTYNAME":"屏東縣","population":10},{"COUNTYNAME":"彰化縣","population":4},{"COUNTYNAME":"新北市","population":34},{"COUNTYNAME":"新竹市","population":6},{"COUNTYNAME":"新竹縣","population":1},{"COUNTYNAME":"桃園市","population":28},{"COUNTYNAME":"澎湖縣","population":1},{"COUNTYNAME":"花蓮縣","population":6},{"COUNTYNAME":"苗栗縣","population":5},{"COUNTYNAME":"金門縣","population":1},{"COUNTYNAME":"雲林縣","population":8},{"COUNTYNAME":"高雄市","population":32}]');
+
+    var population = new Array();
+
+    for(var i = 0, len = popData.length; i < len; i+=1) {
+        population[popData[i].COUNTYNAME] = popData[i].population;
+    }
+
+    for(var i = 0, len = topo.features.length; i < len; i+=1) {
+        topo.features[i].properties.value = population[topo.features[i].properties.name]
+    }
+
+    colorMap = d3.scale.linear().domain([0,32]).range(["#000","#f00"]);
+
+    locks = d3.select("svg#map").selectAll("path").data(topo.features).enter().append("path").attr("fill",function(d){        return colorMap(d.properties.value); }).attr("d", path);    
+
+ });
+ </script> 
+</html>
+
