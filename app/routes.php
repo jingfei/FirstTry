@@ -15,6 +15,9 @@ Route::get('/', function(){});
 
 /* map */
 Route::get('map', 'MapController@map');
+Route::get('map2', 'MapController@map2');
+Route::get('xml', 'MapController@xml');
+Route::get('health', 'MapController@health');
 
 /* login & logout */
 Route::post('register', 'LoginController@register');

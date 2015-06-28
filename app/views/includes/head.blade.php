@@ -9,5 +9,5 @@
 {{HTML::script('js/jquery-1.9.1.js')}}
 {{HTML::script('js/jquery-ui.js')}}
 <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlXSCcTFmrCuCgaSBP5-6luQBRbI-YlsI">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYj2h1a84UfOwn9DFdmh5l7848m7e_r1I">
 	      </script>

@@ -1,0 +1,9 @@
+{
+  "type": "GeometryCollection",
+  "geometries": [
+    {
+      "type": "LineString",
+      "coordinates": [[0, 0], [1, 2]]
+    }
+  ]
+}
