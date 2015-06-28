@@ -30,7 +30,7 @@ var neighborhoods = [
 
 function initialize() {
 	var mapOptions = {
-	  zoom: 7.5,
+	  zoom: 7,
 	  center: taipei
 	};
 

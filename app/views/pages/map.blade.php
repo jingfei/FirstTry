@@ -92,7 +92,7 @@ d3.json("../json/twCounty2010merge.topo.json", function (error, data) {
 	};
 
 		gm = {
-			opt: { center: new google.maps.LatLng(23.8,121.0), zoom: 7.5, minZoom: 7},
+			opt: { center: new google.maps.LatLng(23.8,121.0), zoom: 7, minZoom: 7},
 	 		ov: new google.maps.OverlayView(),
 		};
 		gm.map = new google.maps.Map($("#gmap")[0], gm.opt);
