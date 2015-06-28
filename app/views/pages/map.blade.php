@@ -14,7 +14,7 @@ d3.json("../json/twCounty2010merge.topo.json", function (error, data) {
 //		prj = d3.geo.mercator().center([120.979531, 23.978567]).scale(5000);
 //		path = d3.geo.path().projection(prj);
 	build = function(svg,prj,path){
-		colorMap = d3.scale.linear().domain([0,50]).range(["#24e2b0","#029156"]);
+		colorMap = d3.scale.linear().domain([0,40]).range(["#24e2b0","#029156"]);
 		var rain=JSON.parse('{{$rain}}');
 		var rain2 = new Array();
 		for(var i = 0, len = rain.length; i < len; i+=1) 
@@ -32,14 +32,14 @@ d3.json("../json/twCounty2010merge.topo.json", function (error, data) {
 		var tem=JSON.parse('{{$tem}}');
 		var tem2 = new Array();
 		for(var i = 0, len = tem.length; i < len; i+=1) 
-			tem2[tem[i].COUNTYNAME] = tem[i].value-270;
+			tem2[tem[i].COUNTYNAME] = tem[i].value-300;
 
 		for(var i = 0, len = topo_tem.features.length; i < len; i+=1) {
 			var tem_name=topo_tem.features[i].properties.name;
 			topo_tem.features[i].properties.value = (tem2[tem_name] ? tem2[topo_tem.features[i].properties.name] : 0);
 		}
 		/* dorling */
-		radiusMap=d3.scale.linear().domain([0,50]).range([0,70]);
+		radiusMap=d3.scale.linear().domain([0,50]).range([0,80]);
 
 		dorling = d3.select("svg").selectAll("circle").data(topo_tem.features).enter().append("g");
 		dorling.append("circle")
@@ -62,7 +62,7 @@ d3.json("../json/twCounty2010merge.topo.json", function (error, data) {
 			.attr("y", function(it){return it.properties.c[1]+10;})
 			.style("fill", "#2d2d2d")
 			.style("font-weight", "bold")
-			.text(function(it){return ((it.properties.value+270)/10.0)+"°C";});
+			.text(function(it){return ((it.properties.value+300)/10.0)+"°C";});
 			
 
 		var weather=JSON.parse('{{$weather}}');
@@ -80,8 +80,9 @@ d3.json("../json/twCounty2010merge.topo.json", function (error, data) {
 		   it.properties.x=400;
 		   it.properties.y=300;
 		   if(it.properties.value==8) it.properties.img="img/08.png";
-		   if(it.properties.value==12) it.properties.img="img/12.png";
-		   if(it.properties.value==34) it.properties.img="img/34.png";
+		   else if(it.properties.value==12) it.properties.img="img/12.png";
+		   else if(it.properties.value==34) it.properties.img="img/34.png";
+		   else if(it.properties.value==2) it.properties.img="img/2.png";
 		   })
 		   .attr("x", function(it){return it.properties.c[0]-10+590;})
 		   .attr("y", function(it){return it.properties.c[1]-10+110;})
