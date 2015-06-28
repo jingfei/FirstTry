@@ -11,21 +11,21 @@ class MapController extends BaseController {
 	public function health(){
 		$weight = $pulse = $tem = $blood = "[";
 		$date = new DateTime('2015-06-01');
-		$start = (int)$date->format('U');
+		$start = (int)$date->format('U')+43200;
 		$date = new DateTime('2015-06-30');
-		$end = (int)$date->format('U');
+		$end = (int)$date->format('U')+43200;
 		for($i=$start; $i<=$end; $i+=86400){
 			if($i==$end){
-				$weight .= "[".(string)$i.", ".(string)rand(47,55)."]]";
-				$pulse .= "[".(string)$i.", ".(string)rand(60,80)."]]";
-				$blood .= "[".(string)$i.", ".(string)rand(120,150)."]]";
-				$tem .= "[".(string)$i.", ".(string)rand(33,38)."]]";
+				$weight .= "[".(string)$i."000, ".(string)rand(47,55)."]]";
+				$pulse .= "[".(string)$i."000, ".(string)rand(60,80)."]]";
+				$blood .= "[".(string)$i."000, ".(string)rand(120,150)."]]";
+				$tem .= "[".(string)$i."000, ".(string)rand(33,38)."]]";
 			}
 			else{
-				$weight .= "[".(string)$i.", ".(string)rand(47,55)."],";
-				$pulse .= "[".(string)$i.", ".(string)rand(60,80)."],";
-				$blood .= "[".(string)$i.", ".(string)rand(120,150)."],";
-				$tem .= "[".(string)$i.", ".(string)rand(33,38)."],";
+				$weight .= "[".(string)$i."000, ".(string)rand(47,55)."],";
+				$pulse .= "[".(string)$i."000, ".(string)rand(60,80)."],";
+				$blood .= "[".(string)$i."000, ".(string)rand(120,150)."],";
+				$tem .= "[".(string)$i."000, ".(string)rand(33,38)."],";
 			}
 		}
 		return View::make('pages.health')

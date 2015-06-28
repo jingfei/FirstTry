@@ -5,7 +5,6 @@
 
 <title>FirstTry</title>
 
-<link rel="shortcut icon" href="{{asset('img/csie.ico')}}" type="image/x-icon" />
 {{HTML::script('js/jquery-1.9.1.js')}}
 {{HTML::script('js/jquery-ui.js')}}
 <script type="text/javascript"
